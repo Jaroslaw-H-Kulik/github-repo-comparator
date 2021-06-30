@@ -1,0 +1,21 @@
+parameters:
+
+services:
+    _defaults:
+        autowire: true      # Automatically injects dependencies in your services.
+        autoconfigure: true # Automatically registers your services as commands, event subscribers, etc.
+
+    App\:
+        resource: '../src/'
+        exclude:
+            - '../src/DependencyInjection/'
+            - '../src/Entity/'
+            - '../src/Kernel.php'
+            - '../src/Tests/'
+
+    App\Application\Port\CompareRepositories: '@App\Application\CompareRepositories'
+    App\Application\Port\RepositoryProvider: '@App\Infrastructure\GithubApiClient'
+    App\Domain\Service\RepositoryComparator: '@App\Domain\Service\AdvancedRepositoryComparator'
+
+    GuzzleHttp\ClientInterface:
+        class: GuzzleHttp\Client

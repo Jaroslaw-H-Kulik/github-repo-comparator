@@ -1,0 +1,51 @@
+nelmio_api_doc:
+    documentation:
+        info:
+            title: Github Repos' Comparator
+            description: This is a simple Github Repos' Comparator
+            version: 1.0.0
+        paths:
+            /api/repositories/compare:
+                post:
+                    tags:
+                        - repositories
+                    summary: Compare two repositories
+                    responses:
+                        '400':
+                            description: Invalid input
+                        '404':
+                            description: Not found
+                    requestBody:
+                        $ref: '#/components/requestBodies/RepoIdentifiers'
+        components:
+            schemas:
+                RepoIdentifier:
+                    type: object
+                    properties:
+                        repositoryName:
+                            type: string
+                        repositoryOwner:
+                            type: string
+                ApiResponse:
+                    type: object
+                    properties:
+                        code:
+                            type: integer
+                            format: int32
+                        type:
+                            type: string
+                        message:
+                            type: string
+            requestBodies:
+                RepoIdentifiers:
+                    content:
+                        application/json:
+                            schema:
+                                type: array
+                                items:
+                                    $ref: '#/components/schemas/RepoIdentifier'
+                    description: List of repo identifier objects
+                    required: true
+    areas: # to filter documented areas
+        path_patterns:
+            - ^/api(?!/doc$) # Accepts routes under /api except /api/doc
