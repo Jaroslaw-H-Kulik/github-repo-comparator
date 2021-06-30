@@ -4,7 +4,12 @@ RUN apt-get update && apt-get install -y \
     nginx \
     supervisor \
     curl \
+    zip \
     dos2unix
+
+RUN curl -s https://getcomposer.org/installer | php
+
+RUN mv composer.phar /usr/local/bin/composer
 
 RUN rm /etc/nginx/sites-enabled/default
 
@@ -15,6 +20,8 @@ COPY docker/supervisord.conf /etc/supervisor/conf.d/supervisord.conf
 RUN rm /usr/local/etc/php-fpm.d/zz-docker.conf
 
 COPY . /var/www/html
+
+RUN composer install
 
 RUN sed -i \
     -e "s/listen = 127.0.0.1:9000/listen = \/var\/run\/php-fpm.sock/g" \

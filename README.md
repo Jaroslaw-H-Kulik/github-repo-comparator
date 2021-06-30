@@ -11,7 +11,7 @@ A simple API designed to compare Github repositories
 This command will get you up and running quickly.
 
 ```bash
-docker run -d -it -p 80:80 kulikj01/repo-stats-provider-image
+docker run -d -it -p 80:80 kulikj01/github-repo-comparator-image
 ```
 
 ## Tests
