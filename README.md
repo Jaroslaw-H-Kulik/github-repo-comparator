@@ -19,7 +19,7 @@ docker run -d -it -p 80:80 kulikj01/github-repo-comparator-image
 This command will get you up and running quickly.
 
 ```bash
-docker run -it -p 80:80 kulikj01/github-repo-comparator-image vendor/bin/codecept run
+docker run -it kulikj01/github-repo-comparator-image vendor/bin/codecept run
 ```
 
 ## Documentation
