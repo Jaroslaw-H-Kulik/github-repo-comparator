@@ -20,7 +20,10 @@ class RepositoryComparisonDto
      */
     public function __construct(array $repositories, Repository $mostPopularRepository)
     {
-        $this->repositories = $this->convertRepositoriesToDtos($repositories);
+        foreach ($repositories as $repository) {
+            $this->repositories[] = RepositoryDto::createFromRepository($repository);
+        }
+
         $this->mostPopularRepository = RepositoryDto::createFromRepository($mostPopularRepository);
     }
 
@@ -35,20 +38,5 @@ class RepositoryComparisonDto
     public function getMostPopularRepository(): RepositoryDto
     {
         return $this->mostPopularRepository;
-    }
-
-    /**
-     * @param Repository[]
-     * @return RepositoryDto[]
-     */
-    private function convertRepositoriesToDtos(array $repositories): array
-    {
-        $result = [];
-
-        foreach ($repositories as $repository) {
-            $result[] = RepositoryDto::createFromRepository($repository);
-        }
-
-        return $result;
     }
 }

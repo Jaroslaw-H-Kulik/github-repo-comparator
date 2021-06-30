@@ -29,6 +29,8 @@ RUN sed -i \
     -e "s/;listen.owner = www-data/listen.owner = www-data/g" \
     /usr/local/etc/php-fpm.d/www.conf
 
+RUN chown -R www-data:www-data var
+
 EXPOSE 80
 
 CMD ["/usr/bin/supervisord", "-n", "-c", "/etc/supervisor/conf.d/supervisord.conf"]

@@ -19,3 +19,6 @@ services:
 
     GuzzleHttp\ClientInterface:
         class: GuzzleHttp\Client
+
+    Symfony\Component\HttpFoundation\Request:
+        factory: [ '@request_stack', 'getCurrentRequest' ]

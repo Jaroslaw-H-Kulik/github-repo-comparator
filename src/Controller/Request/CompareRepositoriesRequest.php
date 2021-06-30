@@ -15,18 +15,13 @@ class CompareRepositoriesRequest
      */
     private array $repositoryIdentifiers = [];
 
-    private function __construct(Request $request)
+    public function __construct(Request $request)
     {
         $requestBody = json_decode($request->getContent());
 
         $this->validate($requestBody);
 
         $this->setRepositoryIdentifiers($requestBody);
-    }
-
-    public static function createFromRequest(Request $request): self
-    {
-        return new self($request);
     }
 
     /**
@@ -60,11 +55,11 @@ class CompareRepositoriesRequest
         }
 
         foreach ($body as $repositoryIdentifier) {
-            $this->validateRepositoryIdentifiers($repositoryIdentifier);
+            $this->validateRepositoryIdentifier($repositoryIdentifier);
         }
     }
 
-    private function validateRepositoryIdentifiers($repositoryIdentifier): void
+    private function validateRepositoryIdentifier($repositoryIdentifier): void
     {
         if (!is_object($repositoryIdentifier)) {
             throw new BadRequestHttpException('Invalid request body');
