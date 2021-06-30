@@ -1,6 +1,6 @@
 # Github Repository Comparator API
 
-A simple API designed to compare Github repositories
+A simple API designed to compare Github repositories. Requirements are provided [here](Task.pdf).
 
 ## Requirements
 
