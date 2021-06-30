@@ -44,7 +44,7 @@ nelmio_api_doc:
                                 type: array
                                 items:
                                     $ref: '#/components/schemas/RepoIdentifier'
-                    description: List of repo identifier objects
+                    description: List of object holding repository name and owner
                     required: true
     areas: # to filter documented areas
         path_patterns:
